@@ -5,7 +5,9 @@ void xLoop(void) {
 
 	for (uint8_t i = 0; i < tasksNum; ++i) {
 		if (currentTime >= p_Task[i].previousTime + p_Task[i].period && !isRunning) {
-			//ChangeDebugPinState(HIGH);
+#ifdef DEBUG
+			ChangeDebugPinState(HIGH);
+#endif // DEBUG
 
 			p_Task[i].previousTime = currentTime;
 			p_Task[i].elapsedTime = p_Task[i].previousTime + p_Task[i].runtime;
@@ -14,7 +16,9 @@ void xLoop(void) {
 			p_Task[i].TaskFunction();
 		}
 		if (currentTime >= p_Task[i].elapsedTime && p_Task[i].isRunning) {
-			//ChangeDebugPinState(LOW);
+#ifdef DEBUG
+			ChangeDebugPinState(HIGH);
+#endif // DEBUG
 
 			p_Task[i].isRunning = false;
 			isRunning = false;
