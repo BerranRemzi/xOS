@@ -1,0 +1,13 @@
+{
+  "name": "xOS",
+  "keywords": "arduino, timing, pushbutton",
+  "description": "Real Time Task Scheduler implemented for AVR (Uno, Leonardo, Mega).
+paragraph=The primary design goals are: Easy to use, Small footprint, Robust. Uses internal millis() function. Has CPU load indicator output. Don't use stack.",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/BerranRemzi/xOS"
+  },
+  "frameworks": "arduino",
+  "platforms": "*"
+}
