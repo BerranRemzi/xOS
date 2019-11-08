@@ -1,12 +1,11 @@
-#ifndef ARDUINO_XOS_H
-#define ARDUINO_XOS_H
+#ifndef XOS_H
+#define XOS_H
 
 /*
  * Include the generic headers required for the FreeRTOS port being used.
  */
-#include "Arduino.h"
-#include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
