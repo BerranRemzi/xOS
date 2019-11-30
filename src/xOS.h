@@ -44,7 +44,7 @@ extern "C" {
 
 #ifdef ARDUINO
 	void xDebugPin(uint8_t _pin);
-	static inline void ChangeDebugPinState(bool _input);
+	static inline void ChangeDebugPinState(bool _input); 
 #endif // ARDUINO
 	
 	inline uint32_t xMillis(void);
