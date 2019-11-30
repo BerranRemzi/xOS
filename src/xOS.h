@@ -18,11 +18,6 @@ extern uint32_t millis();
 extern "C" {
 #endif
 
-
-	static const uint32_t wdtDelay[10] = {
-	15,31,60,126,250,500,1000,2000,4000,8000
-	};
-
 	typedef struct Task_t {
 		uint32_t period;
 		uint32_t runtime;
@@ -40,7 +35,6 @@ extern "C" {
 	static uint32_t currentTime = 0;
 
 	static uint8_t timeOutCounter = 0;
-	static uint32_t wdtTime = 0;
 
 	void xLoop(void);
 
@@ -48,19 +42,14 @@ extern "C" {
 
 	void xInit(Task_t *_input);
 
+#ifdef ARDUINO
 	void xDebugPin(uint8_t _pin);
-
 	static inline void ChangeDebugPinState(bool _input);
-
-	void xPowerDown(uint8_t _period);
-
+#endif // ARDUINO
+	
 	inline uint32_t xMillis(void);
 
 	bool IsRunning(void);
-
-	bool xIsPowerDownReady(void);
-
-	uint32_t xWDT();
 
 #ifdef __cplusplus
 }

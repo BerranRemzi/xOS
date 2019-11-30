@@ -1,7 +1,7 @@
 #include "xOS.h"
 
 void xLoop(void) {
-	currentTime = xMillis();
+	currentTime = millis();
 
 	for (uint8_t i = 0; i < tasksNum; ++i) {
 		if (currentTime >= p_Task[i].previousTime + p_Task[i].period && !isRunning) {
@@ -19,14 +19,10 @@ void xLoop(void) {
 #ifdef DEBUG
 			ChangeDebugPinState(HIGH);
 #endif // DEBUG
-
 			p_Task[i].isRunning = false;
 			isRunning = false;
 		}
 	}
-}
-static inline void ChangeDebugPinState(bool _input) {
-	digitalWrite(cpuLoadPin, _input);
 }
 
 void xTaskCreate(void(*_p_Input)(void), uint32_t _period, uint32_t _runtime, uint8_t _priority) {
@@ -41,17 +37,15 @@ void xInit(Task_t *_input) {
 	p_Task = _input;
 }
 
+#ifdef ARDUINO
+static inline void ChangeDebugPinState(bool _input) {
+	digitalWrite(cpuLoadPin, _input);
+}
+
 void xDebugPin(uint8_t _pin) {
 	cpuLoadPin = _pin;
 }
-
-void xPowerDown(uint8_t _period) {
-	wdtTime += wdtDelay[_period];
-}
-
-inline uint32_t xMillis(void) {
-	return wdtTime + millis();
-}
+#endif // ARDUINO
 
 bool IsRunning(void) {
 	for (uint8_t i = 0; i < tasksNum; ++i) {
@@ -60,8 +54,4 @@ bool IsRunning(void) {
 		}
 	}
 	return false;
-}
-uint32_t xWDT() {
-
-	return wdtTime;
 }
