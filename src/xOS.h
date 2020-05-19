@@ -13,24 +13,21 @@
 extern uint32_t millis();
 #endif // ARDUINO
 
+#define TASK_STOPPED 	(UINT32_MAX)
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 	typedef struct Task_t {
+		uint8_t id;
 		uint32_t period;
-		uint32_t runtime;
 		uint8_t priority;
-		uint32_t elapsedTime;
 		uint32_t previousTime;
-		bool isRunning;
 		void(*TaskFunction)(void);
 	} Task_t;
 
-	static bool isRunning = false;
 	static uint8_t tasksNum = 0;
-	static int8_t cpuLoadPin = -1;
 	static Task_t *p_Task = 0;
 	static uint32_t currentTime = 0;
 
@@ -38,18 +35,11 @@ extern "C" {
 
 	void xLoop(void);
 
-	void xTaskCreate(void(*_p_Input)(void), uint32_t _period, uint32_t _runtime, uint8_t _priority);
+	void xTaskCreate(uint8_t _id, void(*_p_Input)(void), uint32_t _period, uint8_t _priority);
 
 	void xInit(Task_t *_input);
 
-#ifdef ARDUINO
-	void xDebugPin(uint8_t _pin);
-	static inline void ChangeDebugPinState(bool _input); 
-#endif // ARDUINO
-	
-	inline uint32_t xMillis(void);
-
-	bool IsRunning(void);
+	bool IsRunning(uint8_t _id);
 
 #ifdef __cplusplus
 }
