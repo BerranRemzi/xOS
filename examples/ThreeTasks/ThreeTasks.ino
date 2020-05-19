@@ -1,9 +1,9 @@
 #include "xOS.h"
 
 enum Tasks{
-  TASK_TickOne,
-  TASK_TickTwo,
-  TASK_TickThree
+  TASK_TICK_ONE,
+  TASK_TICK_TWO,
+  TASK_TICK_THREE
 };
 
 Task_t TaskStruct[4];
@@ -21,9 +21,9 @@ void setup() {
   //Example use of xTaskCreate() function
   //xTaskCreate(ID,            &Function,  Period, Priority);
   
-  xTaskCreate(TASK_TickOne,     &TickOne,    1000,     0);
-  xTaskCreate(TASK_TickTwo,     &TickTwo,     450,     1);
-  xTaskCreate(TASK_TickThree, &TickThree,     200,     2);
+  xTaskCreate(TASK_TICK_ONE,     &TickOne,    1000,     0);
+  xTaskCreate(TASK_TICK_TWO,     &TickTwo,     450,     1);
+  xTaskCreate(TASK_TICK_THREE, &TickThree,     200,     2);
 }
 
 void loop() {
@@ -32,16 +32,16 @@ void loop() {
 
 void TickOne(void) {
   Serial.print("One   - ");
-  Serial.println(p_Task[0].previousTime);
+  Serial.println(millis());
 }
 
 void TickTwo(void) {
   Serial.print("Two   - ");
-  Serial.println(p_Task[1].previousTime);
-  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+  Serial.println(millis());
 }
 
 void TickThree(void) {
   Serial.print("Three - ");
-  Serial.println(p_Task[2].previousTime);
+  Serial.println(millis());
+  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 }

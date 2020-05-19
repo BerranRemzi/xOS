@@ -27,12 +27,6 @@ extern "C" {
 		void(*TaskFunction)(void);
 	} Task_t;
 
-	static uint8_t tasksNum = 0;
-	static Task_t *p_Task = 0;
-	static uint32_t currentTime = 0;
-
-	static uint8_t timeOutCounter = 0;
-
 	void xLoop(void);
 
 	void xTaskCreate(uint8_t _id, void(*_p_Input)(void), uint32_t _period, uint8_t _priority);
