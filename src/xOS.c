@@ -4,8 +4,6 @@ static uint8_t tasksNum = 0;
 static Task_t *p_Task = 0;
 static uint32_t currentTime = 0;
 
-static uint8_t timeOutCounter = 0;
-
 void xLoop(void) {
 	currentTime = millis();
 
