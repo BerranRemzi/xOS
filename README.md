@@ -50,10 +50,6 @@ void TickTwo(void) {
 }
 ```
 
-## Contributing
-
-Just to let you know, pull requests are welcome. For major changes, please open an issue first to discuss what you want to change.
-
 ## Acknowledgements
 
 This code is based on the work of Frank Vahid, Bailey Miller, and Tony Givargis, available at [UCLA - Computer Science - RIOS](https://www.cs.ucr.edu/~vahid/rios/)
