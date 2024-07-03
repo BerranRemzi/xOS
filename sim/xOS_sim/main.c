@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
-#include "../src/xOS.h"
+#include "../../src/xOS.h"
 
 #define TICK_DELAY 100
 
@@ -18,8 +18,8 @@ void Tick_Two(void);
 
 int main() {
 	xInit(TaskStruct);      //Struct with function parameters
-	xTaskCreate(&Tick_One, 1000, 100, 0);
-	xTaskCreate(&Tick_Two, 500, 100, 1);
+	xTaskCreate(&Tick_One, 1000);
+	xTaskCreate(&Tick_Two, 500);
 
 	while (1) {
 		xLoop();  //xOS task

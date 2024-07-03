@@ -20,23 +20,31 @@ extern "C" {
 #endif
 
 	typedef struct Task_t {
-		uint8_t id;
-		uint32_t period;
-		uint8_t priority;
-		uint32_t previousTime;
 		void(*TaskFunction)(void);
+		uint32_t period;
+		uint32_t previousTime;
 	} Task_t;
 
+	/**
+	 * @brief This function loops through all tasks and executes them if their period has passed.
+	 */
 	void xLoop(void);
 
-	void xTaskCreate(uint8_t _id, void(*_p_Input)(void), uint32_t _period, uint8_t _priority);
-
+	/**
+	 * @brief This function creates a new task with the given function pointer and period.
+	 * @param _p_Input Function pointer to the task function.
+	 * @param _period Period of the task in milliseconds.
+	 */
+	void xTaskCreate(void(*_p_Input)(void), uint32_t _period);
+	
+	/**
+	 * @brief This function initializes the task array with the given input.
+	 * @param _input Pointer to the array of tasks.
+	 */
 	void xInit(Task_t *_input);
-
-	bool IsRunning(uint8_t _id);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* ARDUINO_XOS_H */
+#endif /* XOS_H */
