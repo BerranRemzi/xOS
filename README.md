@@ -1,6 +1,6 @@
 # xOS - Task Scheduler
 
-This is a simple task scheduler written in C, based on the work found at UCR CS. It allows you to create tasks that run at specified intervals.
+This is a simple task scheduler written in C. It allows you to create tasks that run at specified intervals.
 
 ## Functions
 
